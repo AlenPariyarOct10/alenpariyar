@@ -35,10 +35,16 @@
     </head>
 
     <body id="top">
+
         
         <section class="banner-1 bg-fixed parallax-bg fullscreen-banner valign-wrapper" data-stellar-background-ratio="0.5">
             <div class="valign-cell">
               <div class="container">
+                <div class="container mb-50">
+                  <p class="typewriter  black-text text-uppercase">I'm 
+                    <span data-text="alen pariyar., a web developer., a student., a tech enthusiast."></span>
+                  </p>
+                </div>
 
               	<div class="comingsoon-wrapper text-center">
 	                <div class="logo">
@@ -49,7 +55,8 @@
 	                
 	                <div class="mb-50">
 	                    <h1 class="intro-title black-text text-uppercase">Coming soon</h1>
-	                    <p class="sub-intro">Good thing takes time. Please, Keep Patience! ❤️</p>
+                      <p class="sub-intro">Site is under construction 🛠️! ❤️<br>
+	                     Good thing takes time. Please, Keep Patience! ❤️</p>
 	                </div>
 
 	              
@@ -118,6 +125,57 @@
           </div>
         </div>
         <!-- End Preloader -->
+        <style>
+          body, html {
+    margin: 0;
+}
+
+:root {
+    
+    --text-color: #ffffff;
+}
+
+.container {
+   
+  
+    align-items: center;
+    box-sizing: border-box;
+    background: var(--bg-color);
+    
+}
+
+.typewriter {
+  text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 56px;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.typewriter span {
+    color: var(--text-color);
+    text-transform: uppercase;
+    padding: 10px;
+    border-right: solid var(--text-color) 10px; 
+    animation: cursor 1s ease-in-out infinite;
+}
+
+@keyframes cursor {
+    from { border-color: var(--text-color); }
+    to { border-color: transparent; }
+}
+
+@media (max-width: 576px) {
+    .typewriter { font-size: 24px; }
+}
+@media (max-width: 768px) {
+    .typewriter { font-size: 36px; }
+}
+        </style>
 
 
         <!-- jQuery -->
@@ -133,6 +191,49 @@
         <script src="assets/js/ajaxchimp.js"></script>
         <script src="assets/js/ajaxchimp-config.js"></script>
         <script src="assets/js/scripts.js"></script>
+        <script>
+          var span = document.querySelector(".typewriter span");
+var textArr = span.getAttribute("data-text").split(", "); 
+var maxTextIndex = textArr.length; 
+
+var sPerChar = 0.15; 
+var sBetweenWord = 1.5;
+var textIndex = 0; 
+
+typing(textIndex, textArr[textIndex]); 
+
+function typing(textIndex, text) {
+    var charIndex = 0; 
+    var maxCharIndex = text.length - 1; 
+    
+    var typeInterval = setInterval(function () {
+        span.innerHTML += text[charIndex]; 
+        if (charIndex == maxCharIndex) {
+            clearInterval(typeInterval);
+            setTimeout(function() { deleting(textIndex, text) }, sBetweenWord * 1000); 
+            
+        } else {
+            charIndex += 1; 
+        }
+    }, sPerChar * 1000); 
+}
+
+function deleting(textIndex, text) {
+    var minCharIndex = 0; 
+    var charIndex = text.length - 1; 
+
+    var typeInterval = setInterval(function () {
+        span.innerHTML = text.substr(0, charIndex); 
+        if (charIndex == minCharIndex) {
+            clearInterval(typeInterval);
+            textIndex + 1 == maxTextIndex ? textIndex = 0 : textIndex += 1; 
+            setTimeout(function() { typing(textIndex, textArr[textIndex]) }, sBetweenWord * 1000); 
+        } else {
+            charIndex -= 1; 
+        }
+    }, sPerChar * 1000); 
+}
+        </script>
 
     </body>
   
